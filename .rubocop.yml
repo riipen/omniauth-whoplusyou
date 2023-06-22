@@ -1,5 +1,43 @@
+require:
+  - rubocop-rspec
+
 AllCops:
+  NewCops: enable
+  SuggestExtensions: false
   TargetRubyVersion: 2.6
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+
+Naming/FileName:
+  Enabled: true
+  Exclude:
+    - lib/omniauth-whoplusyou.rb
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/FilePath:
+  Enabled: true
+  Exclude:
+    - spec/omniauth/strategies/whoplusyou_spec.rb
+
+RSpec/InstanceVariable:
+  Enabled: false
+  
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/SubjectStub:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
 
 Style/StringLiterals:
   Enabled: true

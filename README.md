@@ -1,37 +1,60 @@
-# Omniauth::Whoplusyou
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/riipen/omniauth-whoplusyou/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/riipen/omniauth-whoplusyou/tree/main)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/omniauth/whoplusyou`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+# OmniAuth WhoPlusYou
+Strategy to authenticate with WhoPlusYou via OAuth2 in OmniAuth.
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+Add to your `Gemfile`:
 
-    $ bundle add omniauth-whoplusyou
+```ruby
+gem 'omniauth-whoplusyou'
+```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Then `bundle install`.
 
-    $ gem install omniauth-whoplusyou
+## WhoPlusYou API Setup
+
+Contact your WhoPlusYou instance administrator to be added access to the Developer Portal.
+
+* Visit the API Keys page to find your Client ID and Client Secret.
+
+* Set your Client Domains as needed with the exact redirect URI your application supports. Note that WhoPlusYou does not support any sort of wild card paths, so this must be an exact and full path to your reidrect URI.
+
+
 
 ## Usage
+For additional information, refer to the [OmniAuth wiki](https://github.com/intridea/omniauth/wiki).
 
-TODO: Write usage instructions here
+### Rails
 
-## Development
+Here's an example for adding the middleware to a Rails app in `config/initializers/omniauth.rb`:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :whoplusyou, 
+  		   ENV['WHOPLUSYOU_CLIENT_ID'], 
+  		   ENV['WHOPLUSYOU_CLIENT_SECRET'],
+  		   client_options: {
+             site: 'https://myinstance.whoplusyou.com',
+           },
+           redirect_uri: Rails.application.routes.url_helpers.my_integration_response_url
+end
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+You can now access the OmniAuth WhoPlusYou OAuth2 URL: `/auth/whoplusyou`
 
-## Contributing
+## Configuration
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/omniauth-whoplusyou. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/omniauth-whoplusyou/blob/master/CODE_OF_CONDUCT.md).
+You can configure several options, which you pass in to the `provider` method via a hash:
+
+* `scope`: A space-separated list of permissions you want to request from the user.
+
+* `redirect_uri`: Override the redirect_uri used by the gem. Note this must match exactly what you specified in the WhoPlusYou Developer Portal in your Client Domains setting.
+
+* `name`: The name of the strategy. The default name is `whoplusyou` but it can be changed to any value, for example `wpy`. The OmniAuth URL will thus change to `/auth/wpy` and the `provider` key in the auth hash will then return `wpy`.
+
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Omniauth::Whoplusyou project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/omniauth-whoplusyou/blob/master/CODE_OF_CONDUCT.md).
+Copyright (C) 2023 Jordan Ell. See [LICENSE](https://github.com/riipen/omniauth-whoplusyou/blob/master/LICENSE.md) for details.

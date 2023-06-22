@@ -29,10 +29,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  gem.add_dependency "omniauth", "~> 2.0"
-  gem.add_dependency "omniauth-oauth2", "~> 1.8"
-
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec"
-  gem.add_development_dependency "rubocop"
+  spec.add_dependency "omniauth", "~> 2.0"
+  spec.add_dependency "omniauth-oauth2", "~> 1.8"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
