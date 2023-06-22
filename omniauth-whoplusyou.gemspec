@@ -9,7 +9,10 @@ Gem::Specification.new do |spec|
   spec.email = ["me@jordanell.com"]
 
   spec.summary = "OmniAuth Oauth2 strategy for WhoPlusYou."
-  spec.description = "OmniAuth Oauth2 strategy for WhoPlusYou."
+  spec.description = <<~HEREDOC
+    OmniAuth Oauth2 strategy for WhoPlusYou allowing you to#{" "}
+    connect to a specific WhoPlusYou instance.
+  HEREDOC
   spec.homepage = "https://github.com/riipen/omniauth-whoplusyou"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"

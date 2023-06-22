@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/omniauth-whoplusyou.svg)](https://badge.fury.io/rb/omniauth-whoplusyou)
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/riipen/omniauth-whoplusyou/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/riipen/omniauth-whoplusyou/tree/main)
 
 # OmniAuth WhoPlusYou
