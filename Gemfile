@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "omniauth", "~> 2.1.2"
+gem "omniauth", "~> 2.1.3"
 gem "omniauth-oauth2", "~> 1.8.0"
 
 group :development, :test do
